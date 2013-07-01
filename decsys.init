@@ -1,0 +1,6 @@
+#/bin/sh
+
+export DECSYSHOME=$PWD/
+#export PATH=$PATH:$PWD/bin
+
+

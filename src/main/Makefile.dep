@@ -1,0 +1,112 @@
+CC=g++
+PRE=time
+DYMHOME=..
+DYMSIMHOME=$(DYMHOME)/dymsim
+UTILHOME=$(DYMHOME)/util
+PARADISEOHOME=$(DYMHOME)/optalg/paradiseo-1.2.1
+LEVMARHOME=$(DYMHOME)/optalg/levmar-2.4
+MPICC=mpicxx
+
+
+help:
+	@echo "Targets"
+	@echo "======="
+	@echo ""
+	@echo "	buildall:"
+	@echo "	build:		build exe without debuging"
+	@echo "	builddbg:	build exe with    debuging"
+	@echo " rebuild:        clean and build"
+	@echo "	clean:		clean all objects"
+	@echo ""
+
+
+##Compiler Flags 
+
+
+LIBUTIL=-L$(UTILHOME) -lutil
+LIBLEVMAR=-L$(LEVMARHOME) -llevmar  -llapack  -lblas -lm -u MAIN__
+LIBPARADISEO=-L$(PARADISEOHOME)/paradiseo-eo/build/lib -leoutils -leo
+
+LDLIBS=$(LIBPARADISEO)
+INCPARADISEO=-I$(PARADISEOHOME)/paradiseo-eo/src
+
+OPTFLAGS=-O 
+DBFLAGS=-g -DDEBUG
+
+
+##Executables
+EXE=$(DYMHOME)/bin/testmenu.exe
+EXEDBG=$(DYMHOME)/bin/testmenu-dbg.exe
+
+
+## Object files and src codes 
+SRC=ParserSinglton.cpp Condition.cpp DecisionNode.cpp ConfigFlag.cpp Menu.cpp MenuDymola.cpp MenuVarsList.cpp MenuRegList.cpp MenuExtendedList.cpp MenuConfiguration.cpp MenuConstants.cpp myconstants.cpp myutil.cpp ShellCommands.cpp SpecifiedFlag.cpp DiscreteFlag.cpp BoundedFlag.cpp  ListFlag.cpp RegListFlag.cpp SingltonPattern.cpp
+OBJECTS=${SRC:.cpp=.o}
+OBJECTSDBG= ${SRC:.cpp=.o}
+
+
+
+build:$(EXE)
+
+builddbg:
+	make clean
+	make build OPTFLAGS="$(DBFLAGS)" 
+
+rebuild:
+	make clean;
+	make build -j 2
+
+$(EXE):$(OBJECTS) main.o
+	$(CC) $(LDFLAGS) -o $@ $(OBJECTS) main.o $(LDLIBS)
+	ar rcs libutil.a $(OBJECTS)
+
+$(EXEDBG):$(OBJECTSDBG) main.o 
+	$(CC) $(LDFLAGS) -g -o $@ $(OBJECTSDBG) main.o $(LDLIBS)
+	ar rcs libutil-dbg.a $(OBJECTSDBG)
+###
+# Objects 
+#
+
+.cpp.o:
+	$(CC) -c $(OPTFLAGS) $(INCPARADISEO) $<
+
+
+###
+# DBG-Objects 
+# 
+
+
+# Further Dependencies 
+
+depend:
+	makedepend -- $(SRC)
+
+main.cpp: Condition.h DecisionNode.h ConfigFlag.h
+
+DecisionNode.h:Condition.h
+
+FlagInterface.h:DecisionNode.h
+
+CinfigFlag.h:FlagInterface.h ParserSinglton.h
+
+Menu.h:FlagInterface.h DecisionNode.h
+
+MenuDymola.h:Menu.h ConfigFlag.h MenuConstants.h myconstants.h
+
+MenuConfiguration.h:Menu.h ConfigFlag.h MenuConstants.h myconstants.h
+
+ShellCommands.h: myutil.h
+
+SpecifiedFlag.h: ConfigFlag.h
+
+ListFlag.h: ConfigFlag.h myutil.h ListFlag.cpp
+	touch ListFlag.h
+
+RegListFlag.h:ListFlag.h myutil.h
+	touch RegListFlag.h
+
+MenuRegList.h:Menu.h RegListFlag.h MenuVarsList.h
+
+
+clean:
+	rm -f $(DYMHOME)/bin/*.exe *.o *.a
