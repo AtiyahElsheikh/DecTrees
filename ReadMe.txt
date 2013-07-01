@@ -1,5 +1,5 @@
 About 
-=====
+===============
 
 C++ libraries for implementing dependent flags and menus relying on decision 
 systems. Combining them with emacs, simple interactive menus can be created.
