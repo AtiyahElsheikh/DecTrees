@@ -4,8 +4,6 @@ About
 C++ libraries for implementing dependent flags and menus relying on decision 
 systems. Combining them with emacs, simple interactive menus can be created.
 
-
-
 Contact details
 ===============
 
@@ -16,7 +14,6 @@ License
 =======
 
 This software is distributed under the terms and conditions of LGPL
-
 
 Reference
 =========
@@ -45,8 +42,8 @@ Tested Platforms
 
 Structure
 =========
-Directories are: 
 
+Directories are: 
 
 src/			: main source
    /util		: utilites routines 
