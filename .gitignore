@@ -1,11 +1,16 @@
 #################
+# object files / static libraries 
+#################
+*.o 
+*.a
+
+#################
 ## Eclipse
 #################
 
 *.pydevproject
 .project
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
