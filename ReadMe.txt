@@ -92,6 +92,18 @@ Getting started
 cf. tutorial/  
 
 
+Generating APIs with Doxygen
+===========================
+
+$ mkdir -p api
+$ mkdir -p api/all 
+$ doxygen Doxyfile 
+
+Important TAGS in Doxyfile
+--------------------------
+INPUT, PROJECT_NAME, OUTPUT_DIR
+
+
 ToDo
 ====
 1. implement operators for the Conditions 

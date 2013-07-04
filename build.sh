@@ -4,6 +4,8 @@
 # env variables 
 export DECSYSHOME=$PWD/
 
+
+mkdir -p lib/  bin/ 
 ###
 # ThirdParty
 echo compiling paradiseo-eo components 
