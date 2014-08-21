@@ -9,6 +9,7 @@ Contact details
 
 Atiyah Elsheikh, Energy Department, Austrian Institute of Technology GmbH (AIT), Vienna, Austria
 Email: Atiyah.Elsheikh@ait.ac.at 
+Homepage: https://www.researchgate.net/profile/Atiyah_Elsheikh
 
 License
 =======
@@ -29,7 +30,7 @@ Modelling and Simulation, Cardiff, Wales, UK, Sep. 2013.
 	with decision trees: DecTrees and InteractiveMenus},
   booktitle = {The 8th EUROSIM Congress on Modelling and Simulation},
   year = {2013},
-  pages = {300 -- 305},
+  pages = {300 -- 305},
   address = {Cardiff, Wales, UK},
   month = {Sep.}
 }
