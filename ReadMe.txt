@@ -7,8 +7,8 @@ systems. Combining them with emacs, simple interactive menus can be created.
 Contact details
 ===============
 
-Atiyah Elsheikh, Energy Department, Austrian Institute of Technology GmbH (AIT), Vienna, Austria
-Email: Atiyah.Elsheikh@ait.ac.at 
+Atiyah Elsheikh
+Email: a.m.g.elsheikh at gmail  
 Homepage: https://www.researchgate.net/profile/Atiyah_Elsheikh
 
 License
